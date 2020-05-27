@@ -10,7 +10,6 @@ import Login from "./container/Login/Login";
 import Profile from "./container/Profile/Profile";
 import ForgotPassword from "./container/ForgotPassword/ForgotPassword";
 
-// import Testapi from "./test/testapi";
 
 function App() {
   return (

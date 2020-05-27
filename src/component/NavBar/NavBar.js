@@ -13,6 +13,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import { NavLink } from "react-router-dom";
 import style from "./NavBar.module.css";
 
@@ -23,6 +24,7 @@ const dummy = (event) => console.log("event triggered");
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    marginBottom: theme.spacing(3),
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -145,11 +147,11 @@ export default function PersistentDrawerLeft() {
             "Signup",
             "Logout",
           ].map((text, index) => (
-            <ListItem button key={text}>
-              <NavLink className={style.links} to={text} exact>
-                {text}
-              </NavLink>
-            </ListItem>
+            <NavLink key={text} className={style.links} to={text} exact>
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            </NavLink>
           ))}
         </List>
         <Divider />

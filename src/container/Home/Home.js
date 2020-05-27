@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import Spinner from "./ProductGrid/ProductGrid";
+import Spinner from "../../Utility/Spinner/Spinner";
 import axios from "axios";
-import ProductGrid from "./ProductGrid/ProductGrid";
+import ProductList from "./ProductList/ProductList";
+import CategoryList from "./CategoryList/CategoryList"
 
 class Home extends Component {
     state = { 
-        isLoading: true
+        isProductLoading: true,
+        isCategoryLoading:true
      }
 
     async componentDidMount(){
@@ -14,11 +16,25 @@ class Home extends Component {
             let data = response.data;
             this.setState({ 
                 ...this.state,
-                isLoading: false,
-                data: {...data}
+                isProductLoading: false,
+                productData: {...data}
             });
-            return console.log(this.state);
+            // return console.log(this.state);
           });
+
+        axios.get(`/open/categories`).then((response) => {
+            // console.log(response);
+            let data = response.data;
+            // console.log("...............",data);
+            this.setState({ 
+                ...this.state,
+                isCategoryLoading: false,
+                categoryData: {...data}
+            });
+            // this.setState({ isLoading: false, groups: data.data[0].name });
+            // return console.log(this.state);
+          });
+      
      }
 
     
@@ -26,9 +42,9 @@ class Home extends Component {
     render() { 
         return ( 
             <Fragment>
-                {this.state.isLoading?<Spinner/>:null}
-                <ProductGrid>Test Data</ProductGrid>
-               
+                {this.state.isCategoryLoading?<Spinner/>:<CategoryList data = {this.state.categoryData}/>}   
+                {this.state.isProductLoading?<Spinner/>:<ProductList data = {this.state.productData}/>}  
+                           
             </Fragment>
          );
     }
