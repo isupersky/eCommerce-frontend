@@ -1,47 +1,47 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import GridList from "@material-ui/core/GridList";
 import SingleCategory from "./SingleCategory/SingleCategory";
 
-const ProductList = (props) => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    flexWrap: "nowrap",
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: "translateZ(0)",
+  },
+  title: {
+    color: theme.palette.primary.light,
+  },
+}));
+
+export default function SingleLineGridList(props) {
+  const classes = useStyles();
+
   let iterateProductResponse = () => {
     let output = [];
     let data = props.data.data;
-    // console.log(data);
-
     for (let key in data) {
-      // if (props.data.hasOwnProperty(key)) {
       let value = data[key];
-      //     // console.log(key, value);
-      //     // console.log(value[0]);
 
-      output.push(<SingleCategory data={value} key={value.id} />);
-      // }
+      output.push(
+        <SingleCategory data={value} key={value.id}></SingleCategory>
+      );
     }
     return output;
   };
 
-  // console.log("111111111111",props.data);
-  // console.log("111111111111",props.data[0]);
-  // console.log("111111111111",props.data[1]);
-
-  // let data = props.data===undefined?null:Array.of(props.data);
-  // console.log("222222222222",data);
-
-  let list = (
-    <div className="container">
-      <div className="row">
-        {/* {data===undefined?null:data.map((element)=>{
-                        return <SingleProduct key="1"/>
-                    })} */}
+  return (
+    <div className={classes.root}>
+      <GridList className={classes.gridList} cols={2.5}>
         {iterateProductResponse()}
-        {/* <SingleProduct key="2"/>
-                    <SingleProduct key="3"/>
-                    <SingleProduct key="4"/>
-                    <SingleProduct key="5"/> */}
-      </div>
+      </GridList>
     </div>
   );
-
-  return list;
-};
-
-export default ProductList;
+}
