@@ -6,14 +6,13 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-// import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-// import {noImage} from "../../../../assets/no-image-available-icon.png";
+import noImage from "../../../../assets/no-image-available-icon.png"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,22 +55,12 @@ export default function RecipeReviewCard(props) {
   return (
     <Card className={classes.root}>
       <CardHeader
-        // avatar={
-        //   <Avatar aria-label="recipe" className={classes.avatar}>
-        //     R
-        //   </Avatar>
-        // }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
         title={props.data[1]}
         subheader={props.data[5]}
       />
       <CardMedia
         className={classes.media}
-        image="#" 
+        image={noImage} 
         title="Paella dish"
       >
           {/* <img src = {noImage}/> */}
