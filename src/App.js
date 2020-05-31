@@ -10,25 +10,43 @@ import Login from "./container/Login/Login";
 import Profile from "./container/Profile/Profile";
 import ForgotPassword from "./container/ForgotPassword/ForgotPassword";
 
+import { connect } from 'react-redux';
 
-function App() {
+
+const App =(props) => {
   return (
     <div className="App">
       {/* <Testapi /> */}
-      <Navbar></Navbar>
+      <Navbar{...props}></Navbar>
       {/* <SellerSignup></SellerSignup> */}
       {/* <CustomerSignup></CustomerSignup> */}
-      <Switch>
+      
+        {!props.isAuthenticated?
+          <Switch>
         <Route path="/signup" component={CustomerSignup} />
-        <Route path="/forgotpassword" component={ForgotPassword} />
         <Route path="/sellersignup" component={SellerSignup} />
         <Route path="/login" component={Login} />
+        <Route path="/forgotpassword" component={ForgotPassword} />
+        <Route path="/" exact component={Home} />
+        <Redirect to="/" />
+        </Switch>
+        :
+        <Switch>
         <Route path="/profile" component={Profile} />
         <Route path="/" exact component={Home} />
         <Redirect to="/" />
-      </Switch>
+        </Switch>
+        }
+        
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return{
+    isAuthenticated: state.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(App);
+

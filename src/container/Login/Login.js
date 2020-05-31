@@ -13,6 +13,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
+
+import * as actions from '../../redux/actions/index';
+
 import axios from "axios";
 
 function Copyright() {
@@ -28,7 +33,7 @@ function Copyright() {
   );
 }
 
-function signin(email, password) {
+function signin(email, password, onLogin) {
   var bodyFormData = new FormData();
 
   bodyFormData.set("grant_type", "password");
@@ -40,14 +45,12 @@ function signin(email, password) {
   axios
     .post("/oauth/token", bodyFormData)
     .then((response) => {
-      // console.log(this.state);
-      // this.setState({ isLoading: false, groups: response.data.greetings });
-      return console.log(response);
+      onLogin(response.data.access_token);
     })
     .catch(function (error) {
       console.log("Error Cought");
       if (error.response) {
-        console.log(error.response.data.error_description);
+        alert(error.response.data.error_description);
       } else if (error.request) {
         console.log(error.request);
       } else {
@@ -77,7 +80,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+const Login= (props)=> {
+  const history = useHistory();
   const [credentials, setCredentials] = useState({});
   const classes = useStyles();
 
@@ -94,8 +98,11 @@ export default function Login() {
     if (credentials.email === undefined || credentials.password === undefined) {
       return console.log("nothing entered");
     }
+  
+    // props.onLogin(1234);
 
-    signin(credentials.email, credentials.password);
+    signin(credentials.email, credentials.password, props.onLogin);
+    history.push("/");
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -165,4 +172,12 @@ export default function Login() {
       </Box>
     </Container>
   );
+  }
+
+  const mapDispatchToProps = dispatch => {
+    return{
+        onLogin: (access_token) => dispatch(actions.loginSuccess(access_token))
+    }
 }
+
+export default connect(null,mapDispatchToProps)(Login);

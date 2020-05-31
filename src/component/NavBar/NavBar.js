@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+const NavBar =(props)=> {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -91,7 +91,7 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -137,14 +137,13 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
+        {props.isAuthenticated?
         <List>
           {[
             "Home",
-            "Login",
             "Profile",
             "Orders",
             "cart",
-            "Signup",
             "Logout",
           ].map((text, index) => (
             <NavLink key={text} className={style.links} to={text} exact>
@@ -154,6 +153,21 @@ export default function PersistentDrawerLeft() {
             </NavLink>
           ))}
         </List>
+        :
+        <List>
+          {[
+            "Home",
+            "Login",
+            "cart",
+            "Signup",
+          ].map((text, index) => (
+            <NavLink key={text} className={style.links} to={text} exact>
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            </NavLink>
+          ))}
+        </List>}
         <Divider />
         {/* <List>
           {["All mail", "Trash", "Spam"].map((text, index) => (
@@ -174,3 +188,5 @@ export default function PersistentDrawerLeft() {
     </div>
   );
 }
+
+export default NavBar; 
