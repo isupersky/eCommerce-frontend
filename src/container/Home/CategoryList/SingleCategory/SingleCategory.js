@@ -7,11 +7,14 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: "80%",
+    minWidth:"33%",
     margin: "10px 10px",
+    padding:"2px 2px"
   },
   content: {
     alignSelf: "center",
+    // paddingTop:"4px",
+    // padding:"1px"
   },
   pos: {
     marginBottom: 12,
@@ -23,7 +26,7 @@ export default function SimpleCard(props) {
 
   return (
     <Card
-      onClick={() => console.log("clicked")}
+      onClick={() => props.setSelectedCategoryOnclick(props.data.id)}
       className={classes.root}
       style={{ background: "#FAEBEFFF" }}
     >

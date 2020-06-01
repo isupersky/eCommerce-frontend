@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     flexWrap: "nowrap",
+    width:"100%",
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)",
   },
@@ -31,7 +32,7 @@ export default function SingleLineGridList(props) {
       let value = data[key];
 
       output.push(
-        <SingleCategory data={value} key={value.id}></SingleCategory>
+        <SingleCategory setSelectedCategoryOnclick={props.setSelectedCategoryOnclick} data={value} key={value.id}></SingleCategory>
       );
     }
     return output;

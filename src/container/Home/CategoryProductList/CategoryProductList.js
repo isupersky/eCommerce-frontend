@@ -2,7 +2,7 @@ import React from 'react';
 import SingleProduct from './SingleProduct/SingleProduct'; ;
 
 
-const ProductList = props=>{
+const CategoryProductList = props=>{
 // console.log(props);
 
     let iterateProductResponse=()=>{
@@ -11,9 +11,9 @@ const ProductList = props=>{
         let data = props.data;
         for ( let key in data) { 
             if (props.data.hasOwnProperty(key)) { 
-                const value = props.data[key]; 
+                let value = props.data[key]; 
                 // console.log("PRODUCT LIST PROPS",key); 
-                // console.log(value); 
+                // console.log("hello",value); 
 
                 output.push( <SingleProduct data={value} key={key}/>);
             } 
@@ -50,4 +50,4 @@ const ProductList = props=>{
 
 }
 
-export default ProductList;
+export default CategoryProductList;

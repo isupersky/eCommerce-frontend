@@ -4,7 +4,10 @@ import Paper from '@material-ui/core/Paper';
 import PrductVariationList from './ProductVariation/ProductVariationlist';
 import Grid from '@material-ui/core/Grid';
 import Spinner from "../Utility/Spinner/Spinner"
+
 import axios from "axios";
+
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProductDetails(props) {
+const ProductDetails=(props)=> {
   const classes = useStyles();
   
   const [isLoading, setisLoading] = React.useState(true);
@@ -33,14 +36,15 @@ export default function ProductDetails(props) {
 
   React.useEffect(() => {
     
-    axios.get(`/open/product/${38}`).then((response) => {
+    const { productId } = props.match.params
+    axios.get(`/open/product/${productId}`).then((response) => {
           // console.log(response);
           let tempdata = response.data;
           console.log("...............",tempdata);
           setResponse(tempdata);
           setisLoading(false);
         });
-  }, []);
+  }, [props.match.params]);
 
   return (
       
@@ -54,9 +58,13 @@ export default function ProductDetails(props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper className={classes.paperLeft}>
-              {response.data.Variations_available[mainVariation].primaryImageName !==null?
-              <img alt="Not Available" src={response.data.Variations_available[mainVariation].primaryImageName}/>
-              :<p>Image Not Available</p>}
+              {response.data.Variations_available[mainVariation] ===undefined||
+              response.data.Variations_available[mainVariation].primaryImageName ===null||
+              response.data.Variations_available[mainVariation].primaryImageName ===undefined
+              ?
+              <p>Image Not Available</p>
+            :<img alt="Not Available" width="400vp" src={response.data.Variations_available[mainVariation].primaryImageName}/>
+          }
           </Paper>
         </Grid>
         <Grid item xs={6} sm={6}>
@@ -83,3 +91,5 @@ export default function ProductDetails(props) {
     </div>
   );
 }
+
+export default withRouter(ProductDetails);

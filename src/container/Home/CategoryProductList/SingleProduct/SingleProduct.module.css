@@ -1,0 +1,41 @@
+.single-product {
+  text-align: center;
+}
+.product-rating {
+  color: #ffbc07;
+  margin-bottom: 14px;
+}
+.product-caption li {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 500;
+  padding-right: 13px;
+}
+.discount {
+  color: #ff003c;
+  text-decoration: line-through;
+}
+.product-caption h4 a {
+  margin-bottom: 16px;
+  font-size: 16px;
+  color: #383838;
+}
+.low-star {
+  color: #d3d3d3;
+}
+.new-product {
+  position: absolute;
+  top: 26px;
+  left: 24px;
+}
+.new-product span {
+  background: #ff003c;
+  padding: 3px 16px;
+  border-radius: 30px;
+  color: #fff;
+}
+.product-image {
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}

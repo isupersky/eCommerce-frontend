@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SingleProduct(props) {
-  // console.log("value",props.data);
+  // console.log("value",props.data.Description);
   
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
