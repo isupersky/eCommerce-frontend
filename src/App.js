@@ -10,10 +10,12 @@ import Login from "./container/Login/Login";
 import Profile from "./container/Profile/Profile";
 import ForgotPassword from "./container/ForgotPassword/ForgotPassword";
 import ProductDetail from "./ProductDetail/ProductDetail";
+import Cart from "./container/cart/Cart"
 
 import { connect } from "react-redux";
 
 const App = (props) => {
+  
   return (
     <div className="App">
       {/* <Testapi /> */}
@@ -29,6 +31,7 @@ const App = (props) => {
             component={ProductDetail}
           />
           <Route path="/signup" component={CustomerSignup} />
+          <Route path="/Cart" component={Cart} />
           <Route path="/sellersignup" component={SellerSignup} />
           <Route path="/login" component={Login} />
           <Route path="/forgotpassword" component={ForgotPassword} />
@@ -37,7 +40,13 @@ const App = (props) => {
         </Switch>
       ) : (
         <Switch>
+          <Route
+            path="/ProductDetail/:productId"
+            exact
+            component={ProductDetail}
+          />
           <Route path="/profile" component={Profile} />
+          <Route path="/Cart" component={Cart} />
           <Route path="/" exact component={Home} />
           <Redirect to="/" />
         </Switch>
@@ -48,7 +57,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.isAuthenticated,
+    isAuthenticated: state.login.isAuthenticated,
   };
 };
 

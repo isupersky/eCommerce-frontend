@@ -14,7 +14,7 @@ const loginSuccess = (state, action) => {
       ...state,
       token:action.access_token,
       isAuthenticated:true
-    }
+    }   
 }
 
 // const loginFail = (state,action) => {

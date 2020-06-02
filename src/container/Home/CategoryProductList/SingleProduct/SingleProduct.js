@@ -70,8 +70,8 @@ export default function SingleProduct(props) {
       />
       <CardMedia
         className={classes.media}
-        // image={props.data.Image===undefined||props.data.Image===null?noImage:props.data.Image} 
-        image={noImage} 
+        image={props.data.Image===undefined||props.data.Image===null?noImage:props.data.Image} 
+        // image={noImage} 
 
         title={props.data.ProductName}
       >

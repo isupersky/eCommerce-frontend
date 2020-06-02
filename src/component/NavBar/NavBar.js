@@ -14,7 +14,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { NavLink } from "react-router-dom";
+import {Link } from "react-router-dom";
 import style from "./NavBar.module.css";
 
 const drawerWidth = 240;
@@ -146,11 +146,11 @@ const NavBar =(props)=> {
             "cart",
             "Logout",
           ].map((text, index) => (
-            <NavLink key={text} className={style.links} to={text} exact>
+            <Link key={text} className={style.links} to={`/${text}`} exact>
               <ListItem button key={text}>
                 <ListItemText primary={text} />
               </ListItem>
-            </NavLink>
+            </Link>
           ))}
         </List>
         :
@@ -160,13 +160,15 @@ const NavBar =(props)=> {
             "Login",
             "cart",
             "Signup",
-          ].map((text, index) => (
-            <NavLink key={text} className={style.links} to={text} exact>
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            </NavLink>
-          ))}
+          ].map((text, index) => {
+           console.log(text);
+           return <Link key={text} className={style.links} to={`/${text}`}>
+              
+           <ListItem button key={text}>
+             <ListItemText primary={text} />
+           </ListItem>
+         </Link> 
+          })}
         </List>}
         <Divider />
         {/* <List>

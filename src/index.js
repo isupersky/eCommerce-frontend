@@ -4,17 +4,22 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+// import Cart from "./container/cart/Cart"
+
 import { Provider } from "react-redux";
-// import store from "./redux/store";
-// import { store } from "react-redux";
-// import Testapi from "./test/testapi";
 import loginReducer from "./redux/reducer/login";
-import { createStore, compose } from "redux";
+import cartReducer from "./redux/reducer/cart"
+import { createStore, combineReducers,compose } from "redux";
 import { BrowserRouter } from "react-router-dom";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(loginReducer,  composeEnhancers());
+const rootReducer = combineReducers({
+  login: loginReducer,
+  cart: cartReducer
+});
+
+const store = createStore(rootReducer,  composeEnhancers());
 
 ReactDOM.render(
   <Provider store={store}>

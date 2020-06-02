@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button'
 import PrductVariationList from './ProductVariation/ProductVariationlist';
 import Grid from '@material-ui/core/Grid';
 import Spinner from "../Utility/Spinner/Spinner"
@@ -8,6 +9,10 @@ import Spinner from "../Utility/Spinner/Spinner"
 import axios from "axios";
 
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import * as actions from '../redux/actions/index';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +45,7 @@ const ProductDetails=(props)=> {
     axios.get(`/open/product/${productId}`).then((response) => {
           // console.log(response);
           let tempdata = response.data;
-          console.log("...............",tempdata);
+          // console.log("...............",tempdata);
           setResponse(tempdata);
           setisLoading(false);
         });
@@ -81,6 +86,12 @@ const ProductDetails=(props)=> {
           <h5>Returnable : </h5>
           <input value={response.data.Product_details.returnable} readOnly/>
       </Grid>
+      <Button variant="contained" color="primary" onClick={()=>{
+        console.log("ADD TO CART CLICKED",response.data.Variations_available[mainVariation]);    
+        props.onAddToCart(
+        response.data.Variations_available[mainVariation])}}>
+        ADD TO CART
+      </Button>
     </Grid>
         </Grid>
         <Grid item xs={12}>
@@ -91,5 +102,9 @@ const ProductDetails=(props)=> {
     </div>
   );
 }
-
-export default withRouter(ProductDetails);
+const mapDispatchToProps = dispatch => {
+  return{
+      onAddToCart: (item) => dispatch(actions.addToCart(item))
+  }
+}
+export default withRouter(connect(null,mapDispatchToProps)(ProductDetails));
