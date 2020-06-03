@@ -43,7 +43,8 @@ const deleteFromCart =(state, action)=>{
         }    }
         else if (item.id!==action.cartItem){
         return item; 
-    }        
+    }
+            
     });
     return temp2;
 }

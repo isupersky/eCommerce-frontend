@@ -7,7 +7,7 @@ import Navbar from "./component/NavBar/NavBar";
 import SellerSignup from "./container/SellerSignup/SellerSignup";
 import Home from "./container/Home/Home";
 import Login from "./container/Login/Login";
-import Profile from "./container/Profile/Profile";
+import ProfileHome from "./container/CustomerProfile/ProfileHome";
 import ForgotPassword from "./container/ForgotPassword/ForgotPassword";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Cart from "./container/cart/Cart"
@@ -45,7 +45,7 @@ const App = (props) => {
             exact
             component={ProductDetail}
           />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={ProfileHome} />
           <Route path="/Cart" component={Cart} />
           <Route path="/" exact component={Home} />
           <Redirect to="/" />

@@ -1,5 +1,7 @@
 export {
-    loginSuccess 
+    loginSuccess,
+    passwordChangeLogoutSuccess 
+
 } from './login';
 
 export {

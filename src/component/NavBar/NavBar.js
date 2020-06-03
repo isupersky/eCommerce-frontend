@@ -146,7 +146,7 @@ const NavBar =(props)=> {
             "cart",
             "Logout",
           ].map((text, index) => (
-            <Link key={text} className={style.links} to={`/${text}`} exact>
+            <Link key={text} className={style.links} to={`/${text}`}>
               <ListItem button key={text}>
                 <ListItemText primary={text} />
               </ListItem>
@@ -161,7 +161,6 @@ const NavBar =(props)=> {
             "cart",
             "Signup",
           ].map((text, index) => {
-           console.log(text);
            return <Link key={text} className={style.links} to={`/${text}`}>
               
            <ListItem button key={text}>

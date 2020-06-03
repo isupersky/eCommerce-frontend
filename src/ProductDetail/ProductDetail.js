@@ -89,7 +89,8 @@ const ProductDetails=(props)=> {
       <Button variant="contained" color="primary" onClick={()=>{
         console.log("ADD TO CART CLICKED",response.data.Variations_available[mainVariation]);    
         props.onAddToCart(
-        response.data.Variations_available[mainVariation])}}>
+        response.data.Variations_available[mainVariation])}}
+        style={{margin:"20px auto"}}>
         ADD TO CART
       </Button>
     </Grid>

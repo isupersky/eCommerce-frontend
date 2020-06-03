@@ -7,3 +7,10 @@ export const loginSuccess = (access_token) => {
     access_token: access_token,
   };
 };
+
+export const passwordChangeLogoutSuccess = () => {
+  console.log("Action triggered");
+  return {
+    type: actionTypes.PASSWORD_CHANGE_LOGOUT_SUCCESS
+  };
+};
