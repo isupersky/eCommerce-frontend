@@ -2,26 +2,60 @@ import React, { Component } from 'react';
 //GENERAL
 import { TextField, Grid } from "@material-ui/core";
 import { Button } from '@material-ui/core';
-import { Link } from "react-router-dom";
+import { Link , Redirect} from "react-router-dom";
+
+import axios from 'axios';
 
 
-class SignupForm extends Component {
+class CustomerSignup extends Component {
     state = { 
         user: {
             email: "",
-            firstname: "",
-            middlename: "",
-            lastname: "",
+            firstName: "",
+            middleName: "",
+            lastName  : "",
             contact:"",
             password: "",
             confirmPassword: "",
                       },
           errors: {},
+          redirect: false
      }
 
      buttonOnClickHandler =()=>{
-      console.log(this.state);
-      
+      console.log(this.state.user);
+      if(this.state.user.password=== this.state.user.confirmPassword){
+
+     
+      axios({
+        method: 'post',
+        url: '/customer/register',
+        data: {
+          email: `${this.state.user.email}`,
+          firstName: `${this.state.user.firstName}`,
+          middleName: `${this.state.user.middleName}`,
+          lastName: `${this.state.user.lastName}`,
+          contact: `${this.state.user.contact}`,
+          password: `${this.state.user.password}`,
+        }
+      })
+      .then((response)=> {
+        alert(`${response.data.data.message} \n Check your Mail to Verify Your Acoount`);
+
+        console.log(response);
+        this.setState({
+          ...this.state,
+          redirect:true
+
+        })
+
+  })
+  .catch((error)=>{
+
+    alert(`Message: ${error.response.data.message}\n ${error.response.data.details}`);
+    
+    });
+}
   } 
  
     onChangeHandler =(e)=>{
@@ -61,10 +95,12 @@ class SignupForm extends Component {
         errors: { ...this.state.errors }
       });
     }
+
     render() { 
         const { user, errors } = this.state;
         return ( 
-
+          <div>
+            {this.state.redirect?<Redirect to="/dashboard" />:
       <form style={{ width: "80%", margin: " 20px auto" }}>
 
       <Grid container spacing={2}>
@@ -89,9 +125,9 @@ class SignupForm extends Component {
       <Grid item xs={12}>
         <TextField
           placeholder="Type your firstname here"
-          name="FirstName"
+          name="firstName"
           label="FirstName"
-          value={user.firstname}
+          value={user.firstName}
           onChange={this.onChangeHandler}
           variant="outlined"
           margin="normal"
@@ -107,13 +143,12 @@ class SignupForm extends Component {
           fullWidth
         />
       </Grid>
-
       <Grid item xs={12}>
         <TextField
           placeholder="Type your middlename here"
           name="middleName"
-          label="middleName"
-          value={user.middlename}
+          label="MiddleName"
+          value={user.middleName}
           onChange={this.onChangeHandler}
           variant="outlined"
           margin="normal"
@@ -125,17 +160,16 @@ class SignupForm extends Component {
             minLength: 3,
             maxLength: 20,
           }}
-          error={!!errors["middleName"]}
+          error={!!errors["MiddleName"]}
           fullWidth
         />
       </Grid>
-
       <Grid item xs={12}>
         <TextField
-          placeholder="Type your lastname here"
+          placeholder="Type your lastName here"
           name="lastName"
           label="lastName"
-          value={user.lastname}
+          value={user.lastName}
           onChange={this.onChangeHandler}
           variant="outlined"
           margin="normal"
@@ -147,7 +181,7 @@ class SignupForm extends Component {
             minLength: 3,
             maxLength: 20,
           }}
-          error={!!errors["lastName"]}
+          error={!!errors["LastName"]}
           fullWidth
         />
       </Grid>
@@ -225,11 +259,13 @@ class SignupForm extends Component {
     Register as a seller
               </Link>
     </form>
+    }
+    </div>
 
     
          );
     }
 }
  
-export default SignupForm;
+export default CustomerSignup;
 
