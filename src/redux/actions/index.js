@@ -1,7 +1,7 @@
 export {
     loginSuccess,
-    passwordChangeLogoutSuccess 
-
+    passwordChangeLogoutSuccess,
+    logoutSuccess
 } from './login';
 
 export {

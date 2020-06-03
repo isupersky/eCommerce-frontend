@@ -16,21 +16,17 @@ const loginSuccess = (state, action) => {
     }   
 }
 
-// const logoutSuccess = (state, action) => {
-//     console.log("Reducer Triggered");
-//     console.log("Reducer", action.access_token);
+const logoutSuccess = (state) => {
     
-    
-//     return {
-//       ...state,
-//       token:"",
-//       isAuthenticated:false
-//     }   
-// }
+    return {
+      ...state,
+      token:"",
+      isAuthenticated:false
+    }   
+}
 
 const passwordChangeLogoutSuccess = (state) => {
-    console.log("passwordChangeLogoutSuccess Reducer Triggered");
-   
+    // console.log("passwordChangeLogoutSuccess Reducer Triggered");
     
     return {
       ...state,
@@ -42,8 +38,8 @@ const passwordChangeLogoutSuccess = (state) => {
 const reducer = (state = initialState,action) => {
     switch(action.type){
         case actionTypes.LOGIN_SUCCESS: return loginSuccess(state,action);
-        // case actionTypes.LOGOUT_SUCCESS: return logoutSuccess(state,action);
-        case actionTypes.PASSWORD_CHANGE_LOGOUT_SUCCESS:return passwordChangeLogoutSuccess(state);
+        case actionTypes.LOGOUT_SUCCESS: return logoutSuccess(state);
+        case actionTypes.PASSWORD_CHANGE_LOGOUT_SUCCESS: return passwordChangeLogoutSuccess(state);
         default: return state;
     }
 }

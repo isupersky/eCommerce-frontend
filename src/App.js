@@ -11,6 +11,7 @@ import ProfileHome from "./container/CustomerProfile/ProfileHome";
 import ForgotPassword from "./container/ForgotPassword/ForgotPassword";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Cart from "./container/cart/Cart"
+import Logout from "./container/Logout/Logout"
 
 import { connect } from "react-redux";
 
@@ -47,6 +48,7 @@ const App = (props) => {
           />
           <Route path="/profile" component={ProfileHome} />
           <Route path="/Cart" component={Cart} />
+          <Route path="/Logout" component={Logout} />
           <Route path="/" exact component={Home} />
           <Redirect to="/" />
         </Switch>

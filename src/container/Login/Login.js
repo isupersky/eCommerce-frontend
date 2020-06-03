@@ -46,6 +46,7 @@ function signin(email, password, onLogin) {
     .post("/oauth/token", bodyFormData)
     .then((response) => {
       onLogin(response.data.access_token);
+      return true;
     })
     .catch(function (error) {
       console.log("Error Cought");
@@ -57,6 +58,7 @@ function signin(email, password, onLogin) {
         // Something happened in setting up the request that triggered an Error
         console.log("Error", error.message);
       }
+      return false;
     });
 }
 
@@ -101,8 +103,15 @@ const Login= (props)=> {
   
     // props.onLogin(1234);
 
-    signin(credentials.email, credentials.password, props.onLogin);
-    history.push("/");
+    let success = signin(credentials.email, credentials.password, props.onLogin);
+    if(success){
+      history.push("/");}
+      else{
+        setCredentials({
+          ...credentials,
+          password: "",
+        });
+      }
   };
   return (
     <Container component="main" maxWidth="xs">

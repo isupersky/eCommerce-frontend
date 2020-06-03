@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 import * as actions from '../../redux/actions/index';
 
 
