@@ -11,20 +11,27 @@ import axios from 'axios';
 
 
 class ForgotPassword extends Component {
-    state = {  }
+    state = { 
+        password: "",
+        rePassword: ""
+     }
 
     onChangeHandler = (e) => {
         e.preventDefault();
         this.setState({
-          email: e.target.value,
+          [e.target.name]: e.target.value,
         });
       };
 
     onButtonClickHandler=(e)=>{
         e.preventDefault();
-        axios.post("/forgot-password",this.state)
+        const { token } = this.props.match.params
+        console.log(this.state);
+        
+        axios.patch(`/reset-password/${token}`,this.state)
         .then((response) => {
-            alert("An reset password Link has been sent to your mail");
+            this.setState({});
+            alert("Password Reset Successfull \n Login again!");
         }
         ).catch((error)=>{
             alert("Something went wrong!! \n Try Later")
@@ -37,7 +44,7 @@ class ForgotPassword extends Component {
             <CssBaseline />
             <div >
               <Typography component="h1" variant="h5">
-                Forgot Password
+                Ente New Password
               </Typography>
               <form style={{marginTop:"40px"}} >
                 <TextField
@@ -45,10 +52,26 @@ class ForgotPassword extends Component {
                   margin="normal"
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="password"
+                  value={this.state.password}
+                  type="password"
+                  label="password"
+                  name="password"
+                  autoComplete="password"
+                  autoFocus
+                  onChange={this.onChangeHandler}
+                />
+                 <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="rePassword"
+                  value={this.state.rePassword}
+                  type="password"
+                  label="rePassword"
+                  name="rePassword"
+                  autoComplete="rePassword"
                   autoFocus
                   onChange={this.onChangeHandler}
                 />

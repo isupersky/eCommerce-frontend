@@ -12,6 +12,7 @@ import ForgotPassword from "./container/ForgotPassword/ForgotPassword";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Cart from "./container/cart/Cart"
 import Logout from "./container/Logout/Logout"
+import ResetPassword from "./container/ForgotPassword/ResetPassword"
 
 import { connect } from "react-redux";
 
@@ -36,16 +37,13 @@ const App = (props) => {
           <Route path="/sellersignup" component={SellerSignup} />
           <Route path="/login" component={Login} />
           <Route path="/forgotpassword" component={ForgotPassword} />
+          <Route path="/Reset-Password/:token" component={ResetPassword} />
           <Route path="/" exact component={Home} />
           <Redirect to="/" />
         </Switch>
       ) : (
         <Switch>
-          <Route
-            path="/ProductDetail/:productId"
-            exact
-            component={ProductDetail}
-          />
+          <Route path="/ProductDetail/:productId" exact component={ProductDetail}/>
           <Route path="/profile" component={ProfileHome} />
           <Route path="/Cart" component={Cart} />
           <Route path="/Logout" component={Logout} />
