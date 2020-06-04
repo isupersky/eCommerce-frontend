@@ -8,6 +8,14 @@ export const loginSuccess = (access_token) => {
   };
 };
 
+export const onUserRole = (role) => {
+  console.log("onUserRole Action triggered", role);
+  return {
+    type: actionTypes.USER_ROLE,
+    role: role,
+  };
+};
+
 export const passwordChangeLogoutSuccess = () => {
   console.log("passwordChangeLogoutSuccess Action triggered");
   return {
@@ -18,6 +26,6 @@ export const passwordChangeLogoutSuccess = () => {
 export const logoutSuccess = () => {
   console.log("logoutSuccess Action triggered");
   return {
-    type: actionTypes.PASSWORD_CHANGE_LOGOUT_SUCCESS
+    type: actionTypes.LOGOUT_SUCCESS
   };
 };

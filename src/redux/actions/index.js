@@ -1,7 +1,8 @@
 export {
     loginSuccess,
     passwordChangeLogoutSuccess,
-    logoutSuccess
+    logoutSuccess,
+    onUserRole
 } from './login';
 
 export {

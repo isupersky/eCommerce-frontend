@@ -16,6 +16,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import {Link } from "react-router-dom";
 import style from "./NavBar.module.css";
+import * as constant from "../../Constants/constant"
 
 const drawerWidth = 240;
 
@@ -137,7 +138,23 @@ const NavBar =(props)=> {
           </IconButton>
         </div>
         <Divider />
-        {props.isAuthenticated?
+        {!props.isAuthenticated?
+        <List>
+          {[
+            "Home",
+            "Login",
+            "cart",
+            "Signup",
+          ].map((text, index) => {
+           return <Link key={text} className={style.links} to={`/${text}`}>
+              
+           <ListItem button key={text}>
+             <ListItemText primary={text} />
+           </ListItem>
+         </Link> 
+          })}
+        </List>: null}
+        {props.isAuthenticated && props.role===constant.ROLE_CUSTOMER?
         <List>
           {[
             "Home",
@@ -153,22 +170,27 @@ const NavBar =(props)=> {
             </Link>
           ))}
         </List>
-        :
+        :null}
+
+        {props.isAuthenticated && props.role===constant.ROLE_SELLER?
         <List>
           {[
             "Home",
-            "Login",
+            "DashBoard",
+            "Profile",
+            "Orders",
             "cart",
-            "Signup",
-          ].map((text, index) => {
-           return <Link key={text} className={style.links} to={`/${text}`}>
-              
-           <ListItem button key={text}>
-             <ListItemText primary={text} />
-           </ListItem>
-         </Link> 
-          })}
-        </List>}
+            "Logout",
+          ].map((text, index) => (
+            <Link key={text} className={style.links} to={`/${text}`}>
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            </Link>
+          ))}
+        </List>
+        :null}
+        
         <Divider />
         {/* <List>
           {["All mail", "Trash", "Spam"].map((text, index) => (

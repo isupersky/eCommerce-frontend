@@ -22,15 +22,19 @@ class Logout extends Component {
           .then((response)=> {
 
             this.props.onLogout();
-            this.setState({
-              isLoading: false
-            });
       })
       .catch((error)=>{
     
         alert(`Message: ${error.response.data.message}\n ${error.response.data.details}`);
         
         });
+    }
+
+    componentWillUnmount(){
+
+        this.setState({
+            isLoading: false
+          });
     }
 
     state = { 
@@ -45,8 +49,7 @@ class Logout extends Component {
     }
 }
 
-const mapStateToProps = (state) => {  
-    console.log("mapStateToProps token:",state.login.token);
+const mapStateToProps = (state) => {
     
     return {
         token: state.login.token}

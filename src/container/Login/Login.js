@@ -33,7 +33,7 @@ function Copyright() {
   );
 }
 
-function signin(email, password, onLogin) {
+function signin(email, password, onLogin, onUserRole) {
   var bodyFormData = new FormData();
 
   bodyFormData.set("grant_type", "password");
@@ -45,6 +45,11 @@ function signin(email, password, onLogin) {
   axios
     .post("/oauth/token", bodyFormData)
     .then((response) => {
+      axios.post("/open/role", { email: email})
+      .then((response) => {
+        console.log("Nested API Call Login",response.data.data);
+        onUserRole(response.data.data);
+      })
       onLogin(response.data.access_token);
       return true;
     })
@@ -103,7 +108,7 @@ const Login= (props)=> {
   
     // props.onLogin(1234);
 
-    let success = signin(credentials.email, credentials.password, props.onLogin);
+    let success = signin(credentials.email, credentials.password, props.onLogin, props.onUserRole);
     if(success){
       history.push("/");}
       else{
@@ -185,7 +190,8 @@ const Login= (props)=> {
 
   const mapDispatchToProps = dispatch => {
     return{
-        onLogin: (access_token) => dispatch(actions.loginSuccess(access_token))
+        onLogin: (access_token) => dispatch(actions.loginSuccess(access_token)),
+        onUserRole:(role)=> dispatch(actions.onUserRole(role))
     }
 }
 

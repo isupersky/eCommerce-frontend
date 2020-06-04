@@ -12,17 +12,20 @@ class CustomerProfile extends Component {
     componentDidMount(){
         axios({   
         method: 'GET',
-        url: `/customer/profile`,
+        url: `/seller/profile`,
         headers: {
         'Authorization': `bearer ${this.props.token}`
 
 }
           })
             .then((response)=> {
+              console.log(response.data.data);
+              
                 this.setState({
                     ...this.state,
                     ...response.data.data
                 });
+                this.props.setAddress(this.state.address[0]);
           });
     }
 
@@ -39,12 +42,14 @@ class CustomerProfile extends Component {
 
       axios({
         method: 'patch',
-        url: '/customer/update-profile',
+        url: '/seller/update-profile',
         data: {
           firstName: `${this.state.firstName}`,
           middleName: `${this.state.middleName}`,
           lastName: `${this.state.lastName}`,
-          contact: `${this.state.contact}`
+          companyContact: `${this.state.companyContact}`,
+          companyName: `${this.state.companyName}`,
+          gst: `${this.state.gst}`,
 
         },
         headers: {
@@ -68,7 +73,9 @@ class CustomerProfile extends Component {
     state = {
         disabled:true, 
         active: "",
-        contact: "",
+        companyContact: "",
+        companyName: "",
+        gst:"",
         email: "",
         firstName: "",
         id: 123,
@@ -93,6 +100,7 @@ class CustomerProfile extends Component {
       <Grid item xs={12}>
         <TextField
           name="firstName"
+          label="First Name"
           value={this.state.firstName}
           onChange={this.onChangeHandler}
           variant="outlined"
@@ -105,7 +113,8 @@ class CustomerProfile extends Component {
       <Grid item xs={12}>
         <TextField
           name="middleName"
-          value={this.state.middleName===null?"N/A":this.state.middleName}
+          label="Middle Name"
+          value={this.state.middleName==="null"?"N/A":this.state.middleName}
           onChange={this.onChangeHandler}
           variant="outlined"
           margin="normal"
@@ -117,6 +126,7 @@ class CustomerProfile extends Component {
       <Grid item xs={12}>
         <TextField
           name="lastName"
+          label="Last name"
           value={this.state.lastName}
           onChange={this.onChangeHandler}
           variant="outlined"
@@ -128,8 +138,35 @@ class CustomerProfile extends Component {
 
       <Grid item xs={12}>
         <TextField
-          name="contact"
-          value={this.state.contact===null?"N/A":this.state.contact}
+          name="companyName"
+          label="company name"
+          value={this.state.companyName}
+          onChange={this.onChangeHandler}
+          variant="outlined"
+          margin="normal"
+          disabled={this.state.disabled?true:null}
+          fullWidth
+        />
+      </Grid>
+
+      <Grid item xs={12}>
+        <TextField
+          name="gst"
+          label="gst"
+          value={this.state.gst}
+          onChange={this.onChangeHandler}
+          variant="outlined"
+          margin="normal"
+          disabled={this.state.disabled?true:null}
+          fullWidth
+        />
+      </Grid>
+
+      <Grid item xs={12}>
+        <TextField
+          name="companyContact"
+          label="Company Contact Number"
+          value={this.state.companyContact===null?"N/A":this.state.companyContact}
           onChange={this.onChangeHandler}
           variant="outlined"
           margin="normal"
@@ -140,6 +177,7 @@ class CustomerProfile extends Component {
       <Grid item xs={12}>
         <TextField
           name="email"
+          label="Email"
           value={this.state.email}
           variant="outlined"
           margin="normal"
