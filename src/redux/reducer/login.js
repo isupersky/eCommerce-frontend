@@ -1,8 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState={
-    token : "",
-    isAuthenticated:false,
+    token : "5fd09398-31f0-49d0-b27b-503f98ebd03a",
+    isAuthenticated:true,
     role:"customer"
 }
 

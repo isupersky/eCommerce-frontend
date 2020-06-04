@@ -37,7 +37,19 @@ class ProfileHome extends Component {
                     showPasswordUpdate:true
         
                 });}
-
+        refreshAddressList=()=>{
+            this.setState({
+                ...this.state,
+                showAddress:false
+    
+            });
+            setTimeout(()=> {
+                this.setState({
+                    ...this.state,
+                    showAddress:true       
+                });
+            }, 3);
+        }
 
     render() { 
         return ( 
@@ -72,7 +84,7 @@ class ProfileHome extends Component {
                     {this.state.showProfile===true?
                     <CustomerProfile/>:null}
                     {this.state.showAddress===true?
-                    <AddressList/>:null}
+                    <AddressList refreshAddressList={this.refreshAddressList}/>:null}
                     {this.state.showPasswordUpdate===true?
                     <PasswordUpdate/>:null}
             </Grid>

@@ -57,6 +57,28 @@ class SingleAddress extends Component {
             disabled: true
           });
     }
+
+    deleteButtonOnClick=()=>{
+      console.log("deleteButtonOnClick this.state",this.state);
+
+      axios({
+          method: 'delete',
+          url: `/customer/delete-address/${this.state.id}`,
+          headers: {
+            // 'Authorization': `bearer 6d1e9e17-9968-4433-be2c-d892d5244cb9`
+            'Authorization': `bearer ${this.props.token}`}
+        })
+        .then((response)=> {
+          console.log("Delete Successfull");
+          alert(`Delete Successfull`);
+          this.props.refreshAddressList();
+    })
+    .catch((error)=>{
+          alert(`Something Went Wrong`);
+      
+      });
+
+         }
     
      
     render() { 
@@ -124,13 +146,22 @@ class SingleAddress extends Component {
 
             <Grid item xs={12}>
             {this.state.disabled?
+            <div>
             <Button 
-            onClick={()=>{this.setState( {...this.state,disabled: false})}} 
-            style={{margin:"20px auto"}} 
-            variant="contained" 
-            color="primary">
-              Edit
-              </Button>
+              onClick={()=>{this.setState( {...this.state,disabled: false})}} 
+              style={{margin:"20px 20px"}} 
+              variant="contained" 
+              color="primary">
+                Edit
+            </Button>
+            <Button 
+              onClick={this.deleteButtonOnClick} 
+              style={{margin:"20px 20px"}} 
+              variant="contained" 
+              color="primary">
+                Delete
+            </Button>
+            </div>
             :
             <Button 
             onClick={()=>this.saveButtonOnClick()} 
@@ -145,6 +176,7 @@ class SingleAddress extends Component {
          );
     }
 }
+
 const mapStateToProps = (state) => {  
     
     return {
