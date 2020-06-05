@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState={
-    token : "805eaf66-65c6-4ff5-b35d-221945fc3a51",
+    token : "1c91cdfa-178b-4f25-ad14-1d1dac980932",
     isAuthenticated:true,
     role: "ROLE_SELLER"
 }
