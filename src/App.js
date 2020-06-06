@@ -16,6 +16,11 @@ import Cart from "./container/cart/Cart"
 import Logout from "./container/Logout/Logout"
 import ResetPassword from "./container/ForgotPassword/ResetPassword"
 import * as constants from "./Constants/constant"
+import AdminDashBoard from "./container/AdminDashboard/Dashboard"
+import CustomerList from "./container/AdminDashboard/ManageCustomer/CustomerList"
+import SellerList from "./container/AdminDashboard/ManageSeller/SellerList"
+import ProductList from "./container/AdminDashboard/ManageProduct/ProductList"
+import AdminProductDetail from "./container/AdminDashboard/ManageProduct/ProductDetail/ProductDetail"
 import { connect } from "react-redux";
 
 const App = (props) => {
@@ -71,7 +76,11 @@ const App = (props) => {
       return(
       <Switch>
           <Route path="/ProductDetail/:productId" exact component={ProductDetail}/>
-          <Route path="/profile" component={ProfileHome} />
+          <Route path="/AdminProductDetail/:productId" exact component={AdminProductDetail}/>
+          <Route path="/DashBoard" component={AdminDashBoard} />
+          <Route path="/CustomerList" component={CustomerList} />
+          <Route path="/SellerList" component={SellerList} />
+          <Route path="/ProductList" component={ProductList} />
           <Route path="/Cart" component={Cart} />
           <Route path="/Logout" component={Logout} />
           <Route path="/" exact component={Home} />

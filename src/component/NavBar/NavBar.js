@@ -154,6 +154,7 @@ const NavBar =(props)=> {
          </Link> 
           })}
         </List>: null}
+        
         {props.isAuthenticated && props.role===constant.ROLE_CUSTOMER?
         <List>
           {[
@@ -191,17 +192,24 @@ const NavBar =(props)=> {
         </List>
         :null}
         
-        <Divider />
-        {/* <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+        {props.isAuthenticated && props.role===constant.ROLE_ADMIN?
+        <List>
+          {[
+            "Home",
+            "DashBoard",
+            "Orders",
+            "cart",
+            "Logout",
+          ].map((text, index) => (
+            <Link key={text} className={style.links} to={`/${text}`}>
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            </Link>
           ))}
-        </List> */}
+        </List>
+        :null}
+        <Divider />
       </SwipeableDrawer>
       <main
         className={clsx(classes.content, {

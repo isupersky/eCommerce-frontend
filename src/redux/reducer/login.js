@@ -1,9 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState={
-    token : "1c91cdfa-178b-4f25-ad14-1d1dac980932",
+    token : "4f2053ef-8271-45ce-b179-21c972d92541",
     isAuthenticated:true,
-    role: "ROLE_SELLER"
+    role: "ROLE_ADMIN"
 }
 
 const loginSuccess = (state, action) => {
