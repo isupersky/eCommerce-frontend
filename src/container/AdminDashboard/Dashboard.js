@@ -77,6 +77,7 @@ class AdminDashboard extends Component {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
+                    <Link to="/CategoryManageHome">
                     <Card style={this.cardStyle}>
                     <CardContent>
                         <Typography style={this.contentStyle} variant="h5" component="h2">
@@ -84,6 +85,7 @@ class AdminDashboard extends Component {
                         </Typography>
                         </CardContent>
                     </Card>
+                    </Link>
                 </Grid>
 
             </Grid>

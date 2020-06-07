@@ -16,17 +16,22 @@ import Cart from "./container/cart/Cart"
 import Logout from "./container/Logout/Logout"
 import ResetPassword from "./container/ForgotPassword/ResetPassword"
 import * as constants from "./Constants/constant"
+
 import AdminDashBoard from "./container/AdminDashboard/Dashboard"
 import CustomerList from "./container/AdminDashboard/ManageCustomer/CustomerList"
 import SellerList from "./container/AdminDashboard/ManageSeller/SellerList"
 import ProductList from "./container/AdminDashboard/ManageProduct/ProductList"
 import AdminProductDetail from "./container/AdminDashboard/ManageProduct/ProductDetail/ProductDetail"
+import CategoryMetadataList from "./container/AdminDashboard/ManageCategory/CategoryMetadata/CategoryMetadataList"
+import CategoryList from "./container/AdminDashboard/ManageCategory/Category/CategoryList"
+import CategoryManageHome from "./container/AdminDashboard/ManageCategory/CategoryManageHome"
+import SubCategoryList from "./container/AdminDashboard/ManageCategory/Category/SubCategory/SubCategoryList"
+
 import { connect } from "react-redux";
 
 const App = (props) => {
 
   const createUserAccess=(props)=>{
-    console.log(props);
     
     if(!props.isAuthenticated){
       return (
@@ -81,6 +86,10 @@ const App = (props) => {
           <Route path="/CustomerList" component={CustomerList} />
           <Route path="/SellerList" component={SellerList} />
           <Route path="/ProductList" component={ProductList} />
+          <Route path="/CategoryManageHome" component={CategoryManageHome} />
+          <Route path="/CategoryMetadataList" component={CategoryMetadataList} />
+          <Route path="/CategoryList" component={CategoryList} />
+          <Route path="/SubCategoryList/:categoryId" component={SubCategoryList} />
           <Route path="/Cart" component={Cart} />
           <Route path="/Logout" component={Logout} />
           <Route path="/" exact component={Home} />
