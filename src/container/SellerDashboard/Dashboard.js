@@ -52,11 +52,11 @@ class SellerDashboard extends Component {
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
-                    <Link to="/CategoryManageHome">
+                    <Link to="/AddProduct">
                     <Card style={this.cardStyle}>
                     <CardContent>
                         <Typography style={this.contentStyle} variant="h5" component="h2">
-                            MANAGE CATEGORY
+                            ADD PRODUCT
                         </Typography>
                         </CardContent>
                     </Card>

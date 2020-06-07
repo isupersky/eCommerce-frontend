@@ -18,6 +18,7 @@ import SellerProfileHome from "./container/SellerProfile/ProfileHome"
 import SellerDashBoard from "./container/SellerDashboard/Dashboard"
 import SellerProductList from "./container/SellerDashboard/ManageProduct/ProductList"
 import SellerProductDetail from "./container/SellerDashboard/ManageProduct/ProductDetail"
+import AddProduct from "./container/SellerDashboard/ManageProduct/AddProduct/AddProduct"
 
 import * as constants from "./Constants/constant"
 
@@ -76,6 +77,7 @@ const App = (props) => {
           <Route path="/profile" component={SellerProfileHome} />
           <Route path="/DashBoard" component={SellerDashBoard} />
           <Route path="/SellerProductList" component={SellerProductList} />
+          <Route path="/AddProduct" component={AddProduct} />
           <Route path="/Cart" component={Cart} />
           <Route path="/Logout" component={Logout} />
           <Route path="/" exact component={Home} />
