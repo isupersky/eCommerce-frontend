@@ -8,13 +8,17 @@ import SellerSignup from "./container/SellerSignup/SellerSignup";
 import Home from "./container/Home/Home";
 import Login from "./container/Login/Login";
 import ProfileHome from "./container/CustomerProfile/ProfileHome";
-import SellerProfileHome from "./container/SellerProfile/ProfileHome"
-import SellerDashBoard from "./container/SellerDashboard/Dashboard"
 import ForgotPassword from "./container/ForgotPassword/ForgotPassword";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Cart from "./container/cart/Cart"
 import Logout from "./container/Logout/Logout"
 import ResetPassword from "./container/ForgotPassword/ResetPassword"
+
+import SellerProfileHome from "./container/SellerProfile/ProfileHome"
+import SellerDashBoard from "./container/SellerDashboard/Dashboard"
+import SellerProductList from "./container/SellerDashboard/ManageProduct/ProductList"
+import SellerProductDetail from "./container/SellerDashboard/ManageProduct/ProductDetail"
+
 import * as constants from "./Constants/constant"
 
 import AdminDashBoard from "./container/AdminDashboard/Dashboard"
@@ -68,8 +72,10 @@ const App = (props) => {
       return(
       <Switch>
           <Route path="/ProductDetail/:productId" exact component={ProductDetail}/>
+          <Route path="/SellerProductDetail/:productId" exact component={SellerProductDetail}/>
           <Route path="/profile" component={SellerProfileHome} />
           <Route path="/DashBoard" component={SellerDashBoard} />
+          <Route path="/SellerProductList" component={SellerProductList} />
           <Route path="/Cart" component={Cart} />
           <Route path="/Logout" component={Logout} />
           <Route path="/" exact component={Home} />
