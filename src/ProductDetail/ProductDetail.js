@@ -80,7 +80,7 @@ const ProductDetails=(props)=> {
           <h5>Brand Name : </h5>
           <input value={response.data.Product_details.brand} readOnly/>
           <h5>Description : </h5>
-          <input value={response.data.Product_details.description} readOnly/>
+          <textarea value={response.data.Product_details.description} rows = "5" cols = "60"   readOnly/>
           <h5>Cancellable : </h5>
           <input value={response.data.Product_details.cancellable} readOnly/>
           <h5>Returnable : </h5>
